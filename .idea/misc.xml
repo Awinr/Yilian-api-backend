@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/re-api-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/reflux-interface/pom.xml" />
+        <option value="$PROJECT_DIR$/Reflux-client-sdk/pom.xml" />
+        <option value="$PROJECT_DIR$/Re-Api-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/ReApi-common/pom.xml" />
+        <option value="$PROJECT_DIR$/Re-Api-Interface/pom.xml" />
+        <option value="$PROJECT_DIR$/Re-Api-client-sdk/pom.xml" />
+        <option value="$PROJECT_DIR$/Re-Api-common/pom.xml" />
+        <option value="$PROJECT_DIR$/Re-Api-parent/pom.xml" />
+        <option value="$PROJECT_DIR$/aliyun-oss-spring-boot-starter/pom.xml" />
+        <option value="$PROJECT_DIR$/aliyun-oss-spring-boot-autoconfigure/pom.xml" />
+        <option value="$PROJECT_DIR$/Re-Api-utils/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/FeignApi/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

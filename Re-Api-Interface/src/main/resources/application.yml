@@ -1,0 +1,14 @@
+server:
+  port: 8123
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+      discovery:
+        cluster-name: CS # 集群名称
+
+
+

@@ -1,0 +1,22 @@
+{
+  "groups": [
+    {
+      "name": "reflux.client",
+      "type": "com.Reflux.clientSdk.ReApiClientConfig",
+      "sourceType": "com.Reflux.clientSdk.ReApiClientConfig"
+    }
+  ],
+  "properties": [
+    {
+      "name": "reflux.client.access-key",
+      "type": "java.lang.String",
+      "sourceType": "com.Reflux.clientSdk.ReApiClientConfig"
+    },
+    {
+      "name": "reflux.client.secret-key",
+      "type": "java.lang.String",
+      "sourceType": "com.Reflux.clientSdk.ReApiClientConfig"
+    }
+  ],
+  "hints": []
+}
