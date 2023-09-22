@@ -1,0 +1,39 @@
+server:
+  port: 8090
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - AddResponseHeader=source, reflux
+      routes:
+        - id: api_route
+          uri: http://localhost:8123
+          predicates:
+            - Path=/**
+    nacos:
+      server-addr: 124.220.46.25:8848
+      discovery:
+        cluster-name: CS # 集群名称
+  redis:
+    host: 124.220.46.25
+    port: 6379
+    password: root
+    database: 2
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace
+dubbo:
+  application:
+    name: dubbo-springboot-demo-provider
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    id: nacos-registry
+    address: nacos://124.220.46.25:8848
+
+

@@ -1,4 +1,4 @@
-# 【Re-API分享平台】By Reflux
+# 【API分享平台】By Reflux
 
 ## 完成的工作有：
 

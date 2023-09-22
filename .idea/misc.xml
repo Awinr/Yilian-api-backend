@@ -16,6 +16,7 @@
         <option value="$PROJECT_DIR$/aliyun-oss-spring-boot-starter/pom.xml" />
         <option value="$PROJECT_DIR$/aliyun-oss-spring-boot-autoconfigure/pom.xml" />
         <option value="$PROJECT_DIR$/Re-Api-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/Api-parent/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
