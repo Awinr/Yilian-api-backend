@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 @RestController
-public class NetEaseController {
+public class  NetEaseController {
     /**
      * 热门音乐评论
      */

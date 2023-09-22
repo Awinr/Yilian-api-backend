@@ -21,7 +21,7 @@ spring:
     host: 122.51.215.230
     port: 6379
     timeout: 5000
-    password: 123456
+    password: root
   cloud:
     nacos:
       server-addr: 122.51.215.230:8848

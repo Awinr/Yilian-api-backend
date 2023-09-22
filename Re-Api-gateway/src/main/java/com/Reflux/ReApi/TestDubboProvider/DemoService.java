@@ -19,7 +19,7 @@ package com.Reflux.ReApi.TestDubboProvider;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * 测试dubba可否使用
+ * 测试dubbo可否使用
  * 得出结论，接口类需要抽取出来成为一个公共的类，供生产者实现接口，消费者使用接口
  * 否则，消费者和生成者都要单独写一份接口类，并且接口类的包名必须完全一致！
  */

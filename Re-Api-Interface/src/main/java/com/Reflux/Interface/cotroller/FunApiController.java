@@ -35,7 +35,7 @@ public class FunApiController {
     }
 
     /**
-     * 随机壁纸
+     * 随机壁纸https://api.uomg.com/api/rand.avatar
      */
     @PostMapping("/api/sjbz")
     public BaseResponse<String> randImages(HttpServletRequest request) {

@@ -15,9 +15,9 @@ spring:
       discovery:
         cluster-name: CS # 集群名称
   redis:
-    host: 192.168.198.129
+    host: 124.220.46.25
     port: 6379
-    password: 123456
+    password: root
     database: 2
 
 logging:

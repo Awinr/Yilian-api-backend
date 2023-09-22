@@ -17,7 +17,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * 全局异常处理器
+ * 针对网关的过滤器中发生异常的处理
  *
  */
 @Slf4j

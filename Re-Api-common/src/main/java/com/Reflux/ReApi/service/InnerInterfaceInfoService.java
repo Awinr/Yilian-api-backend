@@ -13,6 +13,6 @@ public interface InnerInterfaceInfoService {
      *
      * @return InterfaceInfo 接口信息
      */
-    InterfaceInfo getInterfaceInfo(long id,String url, String method,String path);
+    InterfaceInfo getInterfaceInfo(long id, String url, String method, String path);
 
 }

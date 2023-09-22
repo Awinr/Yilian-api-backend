@@ -297,7 +297,7 @@ public class InterfaceInfoServiceImpl extends ServiceImpl<InterfaceInfoMapper, I
         //log.info("generate sdk {} done ",reApiClient);
         String invokeResult=null;
         try {
-            // 执行方法
+            // 用户调用第三方接口
             invokeResult = reApiClient.invokeInterface(id,requestParams, url, method,path);
         } catch (Exception e) {
             // 调用失败，开子线程使用默认参数确认接口是否可用
