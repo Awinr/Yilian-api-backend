@@ -10,8 +10,8 @@ import cn.hutool.crypto.digest.Digester;
 public class SignUtils {
     /**
      * 生成签名
-     * @param body
-     * @param secretKey
+     * @param body 调用第三方接口所需要的该接口的参数
+     * @param secretKey 密钥
      * @return
      */
     public static String genSign(String body, String secretKey) {

@@ -15,12 +15,13 @@ public class JwtUtils {
 
     /**
      * 生成JWT令牌
-     * @param claims JWT第二部分负载 payload 中存储的内容
+     * @param claims JWT第二部分负载 payload 中存储的内容，一般指脱敏信息
      * @return
      */
     public static String generateJwt(Map<String, Object> claims){
         String jwt = Jwts.builder()
-                .addClaims(claims)//自定义信息（有效载荷）
+                .addClaims(claims)//自定义信息（有效载荷）一般指用户脱敏信息
+                // 第三部分 用head中指明的 HS256加密算法加密
                 .signWith(SignatureAlgorithm.HS256, signKey)//签名算法（头部）
                 .setExpiration(new Date(System.currentTimeMillis() + expire))//过期时间
                 .compact();
@@ -35,6 +36,7 @@ public class JwtUtils {
     public static Claims parseJWT(String jwt){
         Claims claims = Jwts.parser()
                 .setSigningKey(signKey)//指定签名密钥
+
                 //指定令牌Token,把刚传解析之前写入的有效载荷
                 .parseClaimsJws(jwt)
                 .getBody();

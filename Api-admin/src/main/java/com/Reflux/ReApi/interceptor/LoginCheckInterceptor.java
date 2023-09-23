@@ -23,7 +23,8 @@ import java.io.IOException;
 @Component //当前拦截器对象由Spring创建和管理
 @Slf4j
 public class LoginCheckInterceptor implements HandlerInterceptor {
-    private static final String AUTHORIZATION="Authorization";
+    private static final String AUTHORIZATION = "Authorization";
+
     //前置方式
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -35,7 +36,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
         // 过滤器会把预请求当做真正的请求去判断，所以在过滤器判断token之前先判断是不是预请求OPTIONS
         // 预请求OPTIONS没携带我们的自定义请求头AUTHORIZATION，所以此时应该拦截
         // 如果不判断，会取不出请求头里的Authorization
-        String token="";
+        String token = "";
         // 真相是自定义拦截器和跨域拦截器冲突导致跨域拦截器失效，改用过滤器实现跨域处理就解决问题了
         // 下面代码保留，以防万一
         //如果是预请求，则应该放行
@@ -45,7 +46,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             return true;
         }
         // 如果不是预请求，则取出请求头
-        else{
+        else {
             // 3.获取请求头中的令牌（token），下面这行解析需要和前端约定好
             token = request.getHeader(AUTHORIZATION).replace("Bearer ", "");
         }
@@ -72,6 +73,7 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             loginUserVO.setUserName((String) claims.get(UserConstant.USERNAME));
             loginUserVO.setUserRole((String) claims.get(UserConstant.USERROLE));
             loginUserVO.setUserAvatar((String) claims.get(UserConstant.USERAVATAR));
+
             UserHolder.saveUser(loginUserVO);
         } catch (Exception e) {
             log.info("令牌解析失败!");

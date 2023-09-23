@@ -54,7 +54,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
     public static final List<String> IP_WHITE_LIST = Collections.singletonList("127.0.0.1");
     private static final String DYE_DATA_HEADER = "X-Dye-Data";
     private static final String DYE_DATA_VALUE = "reflux";
-    private static final String KEY_PREFFIX = "User_access:nonce:";
+    private static final String KEY_PREFIX = "User_access:nonce:";
 
     @DubboReference
     private InnerUserService innerUserService;
@@ -85,7 +85,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
         ServerHttpResponse response = exchange.getResponse();
 
-        // 2. 黑白名单，暂时只有本机前端的请求能成功
+        // 2. 黑白名单，暂时只有本机前端的请求能成功，不是本机则设置个状态码，然后拦截掉
         if (!IP_WHITE_LIST.contains(IP_ADDRESS)) {
             // 建议还是用throw，扔出规范错误响应
             return handleNoAuth(response);
@@ -96,6 +96,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         String timestamp = headers.getFirst(APIHeaderConstant.TIMESTAMP);
         String nonce = headers.getFirst(APIHeaderConstant.NONCE);
         String sign = headers.getFirst(APIHeaderConstant.SIGN);
+        // 用户输入的请求体是json格式的字符串，转换一下格式
         String body = URLUtil.decode(headers.getFirst(APIHeaderConstant.BODY), CharsetUtil.CHARSET_UTF_8);
         String id = headers.getFirst(APIHeaderConstant.API_ID);
         String URL = headers.getFirst(APIHeaderConstant.URL);
@@ -115,7 +116,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
             throw new BusinessException(ErrorCode.FORBIDDEN_ERROR, "accessKey 不合法！");
         }
         // 判断随机数是否存在，防止重放攻击
-        String key = KEY_PREFFIX + nonce;
+        String key = KEY_PREFIX + nonce;
         String existNonce = (String) redisTemplate.opsForValue().get(key);
         if (StringUtil.isNotBlank(existNonce)) {
             throw new BusinessException(ErrorCode.FORBIDDEN_ERROR, "请求重复！");
@@ -123,7 +124,8 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         // 时间戳 和 当前时间不能超过 5 分钟 (300000毫秒)
         long currentTimeMillis = System.currentTimeMillis() / 1000;
         long difference = currentTimeMillis - Long.parseLong(timestamp);
-        if (Math.abs(difference) > 300000) {
+        final long FIVE_MINUTES = 60 * 5L;
+        if (Math.abs(difference) > FIVE_MINUTES) {
             throw new BusinessException(ErrorCode.FORBIDDEN_ERROR, "请求超时！");
         }
         // 校验签名
@@ -136,7 +138,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         }
 
         // 4. 请求的模拟接口是否存在？
-        // 从数据库中查询接口是否存在，以及方法是否匹配（还有请求参数是否正确）
+        // 从数据库中查询接口是否存在，以及请求方式是否匹配（还有请求参数是否正确）
         InterfaceInfo interfaceInfo = null;
         try {
             interfaceInfo = innerInterfaceInfoService.getInterfaceInfo(InterfaceInfoId, URL, method, path);
@@ -163,7 +165,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         log.info("接口校验完毕，准备转发请求！");
         // 5. 请求转发，调用模拟接口
         // 5.1 去除无用请求头，不知道能不能提高一点速度.使用headers.remove会直接跑不通
-        // 6. 响应日志
+        // 6. 增加响应日志
         return handleResponse(exchange, chain, interfaceInfoId, userId);
     }
 
@@ -182,7 +184,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
     }
 
     /**
-     * 处理响应
+     * 把第三方接口服务的响应增强一下，加上我们自己的返回数据（日志），运用装饰器模式
      */
     private Mono<Void> handleResponse(ServerWebExchange exchange, GatewayFilterChain chain, long interfaceInfoId, long userId) {
         try {
@@ -196,6 +198,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
                         if (body instanceof Flux) {
                             Flux<? extends DataBuffer> fluxBody = Flux.from(body);
                             return super.writeWith(
+                                    // 这里的dataBuffer，应该存放的是第三方服务接口响应的原始结果
                                     fluxBody.map(dataBuffer -> {
                                         // 7. 调用成功，接口调用次数 + 1 invokeCount，拿到调用成功的 请求头和返回头
                                         ServerHttpRequest invokeRequest = exchange.getRequest();
@@ -272,7 +275,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
         // 使用分布式锁实现接口总调用次数的增加
         // 判断nonce是否为空和判断请求剩余次数应该在转发调用前做
         String nonce = request.getHeaders().getFirst(APIHeaderConstant.NONCE);
-        String key = KEY_PREFFIX + nonce;
+        String key = KEY_PREFIX + nonce;
         redisTemplate.opsForValue().set(key, 1, 5, TimeUnit.MINUTES);
         // 外面包了一层分布式锁，invokeCount应该不需要上分布式事务，因为只有一人会进行invokeCount的操作。
         innerUserInterfaceInfoService.invokeCount(interfaceInfoId, userId);
