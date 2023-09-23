@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Api-Interface/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-Interface/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-admin/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-client-sdk/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-client-sdk/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-common/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-parent/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-parent/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-utils/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/Api-utils/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/FeignApi/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-Interface/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-Interface/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-admin/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-admin/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-client-sdk/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-client-sdk/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-common/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-common/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-gateway/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-gateway/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-parent/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-parent/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-utils/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/Re-Api-utils/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/ReApi-interface/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aliyun-oss-spring-boot-autoconfigure/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aliyun-oss-spring-boot-autoconfigure/src/main/resources" charset="UTF-8" />

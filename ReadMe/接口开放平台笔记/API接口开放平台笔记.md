@@ -189,7 +189,7 @@ PS：
 ```typescript
 <Upload
 name="file"
-listType="picture-circle"
+listType="pictucircle"
 showUploadList={false}
 // 后端处理文件请求的接口
 action="http://localhost:8101/api/file/upload"
@@ -367,7 +367,7 @@ const getUserInfo = async (id: any) => {
 ```typescript
 <Upload
 name="file"
-listType="picture-circle"
+listType="pictucircle"
 showUploadList={false}
 // 后端处理文件请求的接口
 action="http://localhost:8101/api/file/upload"
@@ -1622,7 +1622,7 @@ https://github.com/alibaba/spring-cloud-alibaba/issues/2186
 
 ![image-20230729154802872](API接口开放平台笔记.assets/image-20230729154802872.png)
 
-只要你的接口是免费的，开放的，免密钥的，那么就可以接入我的Re-API使用，真正实现开放平台。
+只要你的接口是免费的，开放的，免密钥的，那么就可以接入我的API使用，真正实现开放平台。
 
 ### 8、最后的问题：
 

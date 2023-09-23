@@ -8,24 +8,35 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="aliyun-oss-spring-boot-starter" />
-        <module name="Re-Api-common" />
-        <module name="Re-Api-utils" />
-        <module name="Re-Api-client-sdk" />
+        <module name="Api-gateway" />
+        <module name="Api-common" />
         <module name="aliyun-oss-spring-boot-autoconfigure" />
-        <module name="Re-Api-Interface" />
-        <module name="Re-Api-gateway" />
-        <module name="Re-Api-admin" />
+        <module name="Api-Interface" />
+        <module name="Api-client-sdk" />
+        <module name="Api-utils" />
+        <module name="Api-admin" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="FeignApi" target="1.8" />
+      <module name="Re-Api-client-sdk" target="1.8" />
+      <module name="Re-Api-common" target="1.8" />
+      <module name="Re-Api-gateway" target="1.8" />
+      <module name="Re-Api-Interface" target="1.8" />
+      <module name="Re-Api-parent" target="1.8" />
+      <module name="Re-Api-utils" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Api-Interface" options="-parameters" />
+      <module name="Api-admin" options="-parameters" />
+      <module name="Api-client-sdk" options="-parameters" />
+      <module name="Api-common" options="-parameters" />
+      <module name="Api-gateway" options="-parameters" />
+      <module name="Api-utils" options="-parameters" />
       <module name="FeignApi" options="-parameters" />
       <module name="Re-Api-Interface" options="-parameters" />
-      <module name="Re-Api-admin" options="-parameters" />
       <module name="Re-Api-client-sdk" options="-parameters" />
       <module name="Re-Api-common" options="-parameters" />
       <module name="Re-Api-gateway" options="-parameters" />
