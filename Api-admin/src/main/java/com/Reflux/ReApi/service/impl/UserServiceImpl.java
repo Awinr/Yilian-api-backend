@@ -61,7 +61,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
     private static final String SALT = "reflux";
     private static final ExecutorService HandleUserSecretKey_EXECUTOR = Executors.newSingleThreadExecutor();
 
-
+    // todo 获取sdk
     @Override
     public ReApiClient getReApiClient(HttpServletRequest request) {
         // 获取当前登录用户
@@ -135,7 +135,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         if (userPassword.length() < 8) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR, "密码错误");
         }
-        // 2. 加密
+        // 2. 加密密码，md5不可逆
         String encryptPassword = DigestUtils.md5DigestAsHex((SALT + userPassword).getBytes());
         // 查询用户是否存在
         QueryWrapper<User> queryWrapper = new QueryWrapper<>();

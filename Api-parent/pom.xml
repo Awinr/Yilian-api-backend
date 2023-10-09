@@ -39,7 +39,7 @@
         <nacos.vesion>2.1.1</nacos.vesion>
         <hutool.version>5.8.9</hutool.version>
         <Api-common.version>0.0.1-SNAPSHOT</Api-common.version>
-        <Api-client-sdk.version>0.0.1-SNAPSHOT</Api-client-sdk.version>
+        <Api-client-sdk.version>0.0.1</Api-client-sdk.version>
         <aliyun-starter.version>0.0.1-SNAPSHOT</aliyun-starter.version>
         <jwt.version>0.9.1</jwt.version>
         <knife4j.version>3.0.3</knife4j.version>

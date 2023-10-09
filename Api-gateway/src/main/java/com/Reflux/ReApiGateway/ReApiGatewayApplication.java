@@ -28,8 +28,8 @@ public class ReApiGatewayApplication {
         // 测试dubbo的接口调用
         ConfigurableApplicationContext context = SpringApplication.run(ReApiGatewayApplication.class, args);
         ReApiGatewayApplication application = context.getBean(ReApiGatewayApplication.class);
-        String result = application.doSayHello("world");
-        System.out.println("result: " + result);
+        String result = application.doSayHello("Dubbo");
+        System.out.println("Hello:" + result);
     }
 
     public String doSayHello(String name) {

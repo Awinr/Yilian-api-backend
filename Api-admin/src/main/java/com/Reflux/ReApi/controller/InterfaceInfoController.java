@@ -57,7 +57,6 @@ public class InterfaceInfoController {
     */
 
 
-
     private final static Gson GSON = new Gson();
 
 
@@ -65,6 +64,7 @@ public class InterfaceInfoController {
 
     /**
      * 仅本人或管理员可编辑该接口
+     *
      * @param oldInterfaceInfo
      */
     private void AuthCheckByInterface(InterfaceInfo oldInterfaceInfo) {
@@ -73,6 +73,7 @@ public class InterfaceInfoController {
             throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
         }
     }
+
     /**
      * 创建，用户或者管理员都可以创建接口
      *
@@ -115,7 +116,7 @@ public class InterfaceInfoController {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
         //User user = userService.getLoginUserBySession(request);
-        
+
         long id = deleteRequest.getId();
         // 判断是否存在
         InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
@@ -158,7 +159,7 @@ public class InterfaceInfoController {
      * @return
      */
     @GetMapping("/get/vo")
-    public BaseResponse<InterfaceInfoVO> getInterfaceInfoVOById(long id ) {
+    public BaseResponse<InterfaceInfoVO> getInterfaceInfoVOById(long id) {
         if (id <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -176,8 +177,7 @@ public class InterfaceInfoController {
      * @return
      */
     @PostMapping("/list/page/vo")
-    public BaseResponse<Page<InterfaceInfoVO>> listInterfaceInfoVOByPage(@RequestBody InterfaceInfoQueryRequest interfaceInfoQueryRequest,HttpServletRequest request)
-    {
+    public BaseResponse<Page<InterfaceInfoVO>> listInterfaceInfoVOByPage(@RequestBody InterfaceInfoQueryRequest interfaceInfoQueryRequest, HttpServletRequest request) {
         long current = interfaceInfoQueryRequest.getCurrent();
         long size = interfaceInfoQueryRequest.getPageSize();
         // 限制爬虫
@@ -208,7 +208,7 @@ public class InterfaceInfoController {
      */
     @PostMapping("/my/list/page/vo")
     public BaseResponse<Page<InterfaceInfoVO>> ListMyInterfaceInfoVOByPage(@RequestBody InterfaceInfoQueryRequest interfaceInfoQueryRequest,
-            HttpServletRequest request) {
+                                                                           HttpServletRequest request) {
         if (interfaceInfoQueryRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -237,7 +237,7 @@ public class InterfaceInfoController {
      */
     @PostMapping("/own/list/page/vo")
     public BaseResponse<Page<InterfaceInfoVO>> ListOwnInterfaceInfoVOByPage(@RequestBody InterfaceInfoQueryRequest interfaceInfoQueryRequest,
-                                                                           HttpServletRequest request) {
+                                                                            HttpServletRequest request) {
         if (interfaceInfoQueryRequest == null) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
@@ -267,24 +267,24 @@ public class InterfaceInfoController {
      * @return
      */
     @PostMapping("/online")
-    //@AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<Boolean> onlineInterfaceInfo(@RequestBody InterfaceInfoInvokeRequest interfaceInfoInvokeRequest,HttpServletRequest request) {
+    @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
+    public BaseResponse<Boolean> onlineInterfaceInfo(@RequestBody InterfaceInfoInvokeRequest interfaceInfoInvokeRequest, HttpServletRequest request) {
         if (interfaceInfoInvokeRequest == null || interfaceInfoInvokeRequest.getId() <= 0) {
             throw new BusinessException(ErrorCode.PARAMS_ERROR);
         }
 
-        long id = interfaceInfoInvokeRequest.getId();
+        long interfaceId = interfaceInfoInvokeRequest.getId();
         // 判断是否存在，也就是发布接口接口必须存在？
-        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
+        InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(interfaceId);
         ThrowUtils.throwIf(oldInterfaceInfo == null, ErrorCode.NOT_FOUND_ERROR);
         //仅本人或管理员可发布该接口
         AuthCheckByInterface(oldInterfaceInfo);
         // 如果下面这一步没抛异常，那么就可以成功上线接口，不需要返回值了
         //log.info("invoke Interface start.....");
-        interfaceInfoService.getInvokeResult(interfaceInfoInvokeRequest,request,oldInterfaceInfo);
+        interfaceInfoService.getInvokeResult(interfaceInfoInvokeRequest, request, oldInterfaceInfo);
         //log.info("invoke Interface end.....");
         InterfaceInfo interfaceInfo = new InterfaceInfo();
-        interfaceInfo.setId(id);
+        interfaceInfo.setId(interfaceId);
         interfaceInfo.setStatus(InterfaceInfoStatusEnum.ONLINE.getValue());//上线接口
         boolean result = interfaceInfoService.updateById(interfaceInfo);
         return ResultUtils.success(result);
@@ -330,12 +330,13 @@ public class InterfaceInfoController {
         // 判断是否存在
         InterfaceInfo oldInterfaceInfo = interfaceInfoService.getById(id);
         ThrowUtils.throwIf(oldInterfaceInfo == null, ErrorCode.NOT_FOUND_ERROR);
-        ThrowUtils.throwIf(oldInterfaceInfo.getStatus().equals(InterfaceInfoStatusEnum.OFFLINE.getValue()),ErrorCode.PARAMS_ERROR,"接口已关闭");
+        ThrowUtils.throwIf(oldInterfaceInfo.getStatus().equals(InterfaceInfoStatusEnum.OFFLINE.getValue()), ErrorCode.PARAMS_ERROR, "接口已关闭");
 
         String invokeResult = interfaceInfoService.getInvokeResult(interfaceInfoInvokeRequest, request, oldInterfaceInfo);
 
         return ResultUtils.success(invokeResult);
     }
+
     // 下载SDK使用，未测试
     @GetMapping("/sdk")
     public void getSdk(HttpServletResponse response) throws IOException {

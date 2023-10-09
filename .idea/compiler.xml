@@ -19,6 +19,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="FeignApi" target="1.8" />
+      <module name="Re-Api-admin" target="1.8" />
       <module name="Re-Api-client-sdk" target="1.8" />
       <module name="Re-Api-common" target="1.8" />
       <module name="Re-Api-gateway" target="1.8" />

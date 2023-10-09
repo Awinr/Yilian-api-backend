@@ -46,7 +46,7 @@ public class AnalysisController {
         // 根据接口id分组
         Map<Long, List<UserInterfaceInfo>> interfaceInfoIdObjMap = userInterfaceInfoList.stream()
                 .collect(Collectors.groupingBy(UserInterfaceInfo::getInterfaceInfoId));
-        // 查询所有接口id的接口信息
+        // 查询所有接口id的接口全部信息
         List<InterfaceInfo> list = interfaceInfoService.lambdaQuery()
                 .in(InterfaceInfo::getId, interfaceInfoIdObjMap.keySet())
                 .list();
