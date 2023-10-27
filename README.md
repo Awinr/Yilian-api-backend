@@ -2,7 +2,7 @@
 
 **一款api管理平台**
 
-![image-20231027182719236](README.assets/image-20231027182719236.png)
+https://cdn.statically.io/gh/Awinr/picx-images-hosting@master/images/image-20231027182719236.55c8e0pdjo00.webp
 
 1. 从场景上说，API开放平台是一个提供API调用的平台，用户可以使用接口，管理员可以发布、下线接口、接入接口，以及可视化接口的调用情况、数据。
 2. 从架构上来说，API开放平台分为6个模块，分别为：
