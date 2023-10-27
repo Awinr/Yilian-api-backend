@@ -1,0 +1,59 @@
+server:
+  port: 8090
+spring:
+  cloud:
+    gateway:
+      default-filters:
+        - AddResponseHeader=source, reflux
+      routes:
+        - id: interface
+          #uri: http://localhost:8123 #路由的目标地址 http就是固定地址
+          uri: lb://interface-manager # 路由的目标地址 lb就是负载均衡，后面跟服务名称
+          predicates:
+            - Path=/interface/** #只要符合/interface导向interface端
+#        - id:
+#          #uri: http://localhost:8101
+#          uri: lb://ReApi-admin
+#          predicates:
+#            - Path=/admin/** #把符合/admin的导向服务器admin
+    nacos:
+      server-addr: 122.51.215.230:8848
+      discovery:
+        cluster-name: CS # 集群名称
+  application:
+    name: gateway
+  redis:
+    host: 122.51.215.230
+    port: 6379
+    password: 123456
+    database: 2
+interface-manager: # 给某个微服务配置负载均衡规则，这里是interface-manager服务
+  ribbon:
+    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则，优先本地集群
+#ReApi-admin:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.alibaba.cloud.nacos.ribbon.NacosRule # 负载均衡规则，优先本地集群
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          gateway: trace #线上不打日志
+dubbo:
+  application:
+    name: dubbo-consumer
+    qosEnable: true
+    qosPort: 33333
+    qosAcceptForeignIp: false
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    #use-as-config-center: false
+    id: nacos-registry
+    address: nacos://122.51.215.230:8848
+  consumer:
+    timeout: 30000
+
+
