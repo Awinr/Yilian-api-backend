@@ -42,6 +42,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.Vector;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
@@ -53,7 +54,7 @@ public class CustomGlobalFilter implements GlobalFilter, Ordered {
 
     public static final List<String> IP_WHITE_LIST = Collections.singletonList("127.0.0.1");
     private static final String DYE_DATA_HEADER = "X-Dye-Data";
-    private static final String DYE_DATA_VALUE = "reflux";
+    private static final String DYE_DATA_VALUE = "Aaron";
     private static final String KEY_PREFIX = "User_access:nonce:";
 
     @DubboReference
