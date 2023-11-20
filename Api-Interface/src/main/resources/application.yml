@@ -6,6 +6,6 @@ spring:
       matching-strategy: ant_path_matcher
   cloud:
     nacos:
-      server-addr: 124.220.46.25:8848
+      server-addr: 47.98.111.114:8848
       discovery:
         cluster-name: CS # 集群名称

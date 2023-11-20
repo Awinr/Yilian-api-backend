@@ -11,7 +11,7 @@ spring:
           predicates:
             - Path=/**
     nacos:
-      server-addr: 124.220.46.25:8848
+      server-addr: 47.98.111.114:8848
       discovery:
         cluster-name: CS # 集群名称
   redis:
@@ -34,6 +34,6 @@ dubbo:
     port: -1
   registry:
     id: nacos-registry
-    address: nacos://124.220.46.25:8848
+    address: nacos://47.98.111.114:8848
 
 

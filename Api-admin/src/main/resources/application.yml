@@ -44,7 +44,7 @@ spring:
       max-request-size: 100MB
   cloud:
     nacos:
-      server-addr: 124.220.46.25:8848
+      server-addr: 47.98.111.114:8848 # 124.220.46.25:8848
       discovery:
         cluster-name: CS # 集群名称
 server:
@@ -105,4 +105,5 @@ dubbo:
     name: dubbo
     port: -1
   registry:
-    address: nacos://124.220.46.25:8848
+    id: nacos-registry
+    address: nacos://47.98.111.114:8848 # nacos://124.220.46.25:8848
